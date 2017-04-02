@@ -8,7 +8,6 @@ data = open('src/wav/test.wav', 'rb').read()
 resp = requests.post(url='http://lidsccsmartindiahackathon2017.mybluemix.net/speech',
                     data=data,
                     headers={'Content-Type': 'application/octet-stream'})
-print("S")
 getdata=json.loads(resp.content.decode('utf-8'))
 tones=getdata["tone_categories"]
 vals=''
@@ -19,11 +18,11 @@ for val in tones:
                 print(str(scores["tone_id"])+" "+str(scores["score"]))
                 vals+=str(scores["tone_id"])+" "+str(scores["score"])
         break;
-date={}
-data["violation"]=vals.decode
-data["number"]="109"
-data["action"]=1
-data["alertpriority"]=100
-userdata=json.dumps(data)
+cltdata={}
+cltdata["violation"]=vals
+cltdata["number"]="109"
+cltdata["action"]=1
+cltdata["alertpriority"]=100
+userdata=json.dumps(cltdata)
 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-resp=requests.post("http://lidsmysqldb.clouadpp.net/sih2017/lids-api/sendAlert.php",data)
+resp=requests.post("http://lidsmysqldb.clouadpp.net/sih2017/lids-api/sendAlert.php",userdata)
