@@ -25,4 +25,4 @@ cltdata["action"]=1
 cltdata["alertpriority"]=100
 userdata=json.dumps(cltdata)
 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-resp=requests.post("http://lidsmysqldb.clouadpp.net/sih2017/lids-api/sendAlert.php",userdata)
+resp=requests.post(url="http://lidsmysqldb.clouadpp.net/sih2017/lids-api/sendAlert.php",data=userdata)
